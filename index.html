@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Instagram ideas</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0f0f0f;
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(45deg, #ff004f, #ff8000);
+}
+
+h1 { margin: 0; }
+
+.search-box {
+    text-align: center;
+    margin: 20px;
+}
+
+input {
+    padding: 12px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 25px;
+    border: none;
+}
+
+.nav {
+    text-align: center;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    background: #ff004f;
+    color: white;
+    cursor: pointer;
+}
+
+.container {
+    padding: 20px;
+}
+
+.idea {
+    background: #1e1e1e;
+    margin: 8px;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.hidden { display: none; }
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🔥 Instagram Ideas Hub PRO 🔥</h1>
+<p>500+ Ideas for Stories | Reels | Notes | Bios</p>
+</header>
+
+<div class="search-box">
+<input type="text" id="search" placeholder="Search ideas..." onkeyup="searchIdeas()">
+</div>
+
+<div class="nav">
+<button onclick="showSection('stories')">Stories</button>
+<button onclick="showSection('reels')">Reels</button>
+<button onclick="showSection('notes')">Notes</button>
+<button onclick="showSection('bios')">Bios</button>
+</div>
+
+<div class="container">
+
+<div id="stories" class="section"></div>
+<div id="reels" class="section hidden"></div>
+<div id="notes" class="section hidden"></div>
+<div id="bios" class="section hidden"></div>
+
+</div>
+
+<script>
+
+// Base idea templates  
+const storyIdeas = [  
+"Morning routine ☀️","Outfit of the day 👕","Gym selfie 💪","Study time 📚",  
+"Travel moment ✈️","Food you love 🍔","Night vibes 🌙","Rain vibes 🌧",  
+"Throwback memory 📸","Music mood 🎧"  
+];  
+
+// 🔥 NEW SECTIONS
+const trendingSongs = [
+"Calm Down – Rema 🎧",
+"Perfect – Ed Sheeran ❤️",
+"Heat Waves – Glass Animals 🔥",
+"Daylight – David Kushner 🌅",
+"Starboy – The Weeknd ✨",
+"Until I Found You – Stephen Sanchez 💕",
+"Believer – Imagine Dragons 💪",
+"Closer – The Chainsmokers 🎶",
+"Love Nwantiti – CKay 💖",
+"Industry Baby – Lil Nas X 🚀"
+];
+
+const filtersIdeas = [
+"Golden Glow Filter ✨",
+"Vintage Film Filter 📼",
+"Black & White Classic 🖤",
+"Soft Blur Aesthetic 🌫️",
+"Neon Lights Effect 🌈",
+"Warm Sunset Tone 🌅",
+"Cool Blue Mood ❄️",
+"High Contrast Pop 🎨",
+"Retro Camera Effect 📷",
+"Dreamy Pink Filter 💗"
+];
+
+const storyTips = [
+"Match song beat with clips 🎶",
+"Use minimal text style ✨",
+"Add GIF stickers for engagement 😄",
+"Use polls & questions 📊",
+"Keep consistent color theme 🎨",
+"Add location tags 📍",
+"Use slow-motion for drama 🎥",
+"Try mirror or zoom effects 🔍",
+"Add emojis creatively 😎",
+"Keep stories short & catchy ⚡"
+];
+
+const reelIdeas = [  
+"Glow up transformation ✨","Dance trend 💃","Lip sync 🎤",  
+"Funny reaction 😂","Day in my life","Workout clip 💪",  
+"Outfit transition","Travel vlog 🌍","POV video","Motivation reel 🚀"  
+];  
+
+const noteIdeas = [  
+"Feeling good 😌","Late night vibes 🌙","No stress zone",  
+"Dream big ✨","Focus mode","Chill mood 😎",  
+"Music = life 🎧","Keep going 💪","Silent thoughts",  
+"Peaceful mind 🧠"  
+];  
+
+const bioIdeas = [  
+"Dream big ✨","Simple & real 😎","Born to shine 🌟",  
+"No limits 🚀","Living my story","Stay humble 💯",  
+"Good vibes only ✌️","Be yourself","Silent killer 😏",  
+"Create your life"  
+];  
+
+// Generate 500+ ideas  
+function generateIdeas(baseArray, sectionId) {  
+    let container = document.getElementById(sectionId);  
+    container.innerHTML = `<h2>${sectionId.toUpperCase()} IDEAS</h2>`;  
+
+    for (let i = 1; i <= 500; i++) {  
+        let text = baseArray[i % baseArray.length] + " #" + i;  
+        let div = document.createElement("div");  
+        div.className = "idea";  
+        div.innerText = i + ". " + text;  
+        container.appendChild(div);  
+    }  
+
+    // 🔥 ADD SPECIAL BLOCKS ONLY FOR STORIES
+    if (sectionId === "stories") {
+
+        // SONGS SECTION
+        let songHeader = document.createElement("h2");
+        songHeader.innerText = "🎧 TRENDING SONGS";
+        container.appendChild(songHeader);
+
+        trendingSongs.forEach((song, index) => {
+            let div = document.createElement("div");
+            div.className = "idea";
+            div.innerText = (index + 1) + ". " + song;
+            container.appendChild(div);
+        });
+
+        // FILTER SECTION
+        let filterHeader = document.createElement("h2");
+        filterHeader.innerText = "🎨 BEST FILTERS";
+        container.appendChild(filterHeader);
+
+        filtersIdeas.forEach((filter, index) => {
+            let div = document.createElement("div");
+            div.className = "idea";
+            div.innerText = (index + 1) + ". " + filter;
+            container.appendChild(div);
+        });
+
+        // TIPS SECTION
+        let tipsHeader = document.createElement("h2");
+        tipsHeader.innerText = "💡 STORY TIPS & IDEAS";
+        container.appendChild(tipsHeader);
+
+        storyTips.forEach((tip, index) => {
+            let div = document.createElement("div");
+            div.className = "idea";
+            div.innerText = "Tip " + (index + 1) + ": " + tip;
+            container.appendChild(div);
+        });
+    }
+}  
+
+// Load all sections  
+generateIdeas(storyIdeas, "stories");  
+generateIdeas(reelIdeas, "reels");  
+generateIdeas(noteIdeas, "notes");  
+generateIdeas(bioIdeas, "bios");  
+
+// Switch sections  
+function showSection(id) {  
+    document.querySelectorAll('.section').forEach(sec => sec.classList.add('hidden'));  
+    document.getElementById(id).classList.remove('hidden');  
+}  
+
+// Search function  
+function searchIdeas() {  
+    let input = document.getElementById("search").value.toLowerCase();  
+    let ideas = document.querySelectorAll(".idea");  
+
+    ideas.forEach(i => {  
+        if (i.innerText.toLowerCase().includes(input)) {  
+            i.style.display = "block";  
+        } else {  
+            i.style.display = "none";  
+        }  
+    });  
+}  
+
+</script>
+      
+
+</body>
+</html>
